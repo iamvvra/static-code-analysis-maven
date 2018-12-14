@@ -16,6 +16,7 @@
 		<java.version>1.8</java.version>
 		<checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
 		<pmd.plugin.version>3.11.0</pmd.plugin.version>
+		<spotbugs.plugin.version>3.1.9</spotbugs.plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -90,6 +91,24 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<!-- SpotBugs plugin -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>${spotbugs.plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>validate</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<xmlOutput>true</xmlOutput>
+					<xmlOutputDirectory>${project.build.directory}</xmlOutputDirectory>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
