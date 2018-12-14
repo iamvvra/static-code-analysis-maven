@@ -14,6 +14,8 @@
 	<description>Demo project for pmd maven</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
+		<pmd.plugin.version>3.11.0</pmd.plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,10 +38,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- PMD plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.11.0</version>
+				<version>${pmd.plugin.version}</version>
 				<executions>
 					<execution>
 						<phase>validate</phase>
@@ -62,14 +65,32 @@
 						<ruleset>category/java/multithreading.xml</ruleset>
 						<ruleset>category/java/performance.xml</ruleset>
 					</rulesets>
-					<!-- <outputDirectory>${project.build.directory}</outputDirectory>
-					<format>html</format> -->
-					<linkXRef>true</linkXRef>
+					<linkXRef>false</linkXRef>
 				</configuration>
+			</plugin>
+			<!-- Checkstyle plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle.plugin.version}</version>
+				<configuration>
+					<configLocation>google_checks.xml</configLocation>
+					<failsOnError>true</failsOnError>
+					<consoleOutput>true</consoleOutput>
+					<encoding>UTF-8</encoding>
+					<violationSeverity>error</violationSeverity>
+					<includeResources>false</includeResources>
+					<includeTestResources>false</includeTestResources>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
-	<reports>
-		<report>maven-pmd-plugin</report>
-	</reports>
 </project>
