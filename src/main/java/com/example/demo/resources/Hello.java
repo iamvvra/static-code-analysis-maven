@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Hello {
 
-    @GetMapping("/hello/{name}")
-    public String sayHello(@PathVariable String name) {
-        return "Hello " + Optional.ofNullable(name).orElse("world");
-    }
+  @GetMapping("/hello/{name}")
+  public String sayHello(@PathVariable String name) {
+    return "Hello " + Optional.ofNullable(name).orElse("world");
+  }
 }

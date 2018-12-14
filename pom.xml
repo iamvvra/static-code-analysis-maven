@@ -39,6 +39,25 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- fmt -->
+			<plugin>
+				<groupId>com.coveo</groupId>
+				<artifactId>fmt-maven-plugin</artifactId>
+				<version>2.6.0</version>
+				<configuration>
+					<style>google</style>
+					<displayLimit>10</displayLimit>
+					<skipSortingImports>true</skipSortingImports>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+						</goals>
+						<phase>validate</phase>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- PMD plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
