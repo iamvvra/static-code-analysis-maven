@@ -35,12 +35,10 @@ Checkstyle also can be invoked individually with the command `mvn checkstyle:che
 FindBugs is a static code analysis tool to identify potential bugs in the code. This plugin runs as part of project build. This also can be invoked separately with the command `mvn findbugs:findbugs` to identify the bugs and generate report simultaneously not failing the build, or `mvn findbugs:check` to analyse code for bugs and fail if any violations are found.
 
 
-
-## fmt-maven-plugin
-This is a Maven plugin to format the code using google coding format. It is now run as first step of static code analysis during the build.
-This plugin can be invoked independently, 
-`mvn com.coveo:fmt-maven-plugin:format` command formats the code.
-`com.coveo:fmt-maven-plugin:check` command verifies if the code is formatted.
+## google-java-format
+This is a tool to format the code to Google style 
+This tool can be configure in Java projects in different ways, one way is to have pre-commit hook that triggers this plugin to format the modified Java files during git commit.
+`maven-git-code-format` that registers a pre-commit hook with a script (.git/hooks/{project_name}.maven-git-code-format.sh) which is triggered when the developer commits the changes.
 
 ## When not to format?
 There are times it isn't good to format the code, for example, the files that are not part of the current changeset shouldn't be format even if the files do not conform to the standards.
